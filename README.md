@@ -6,7 +6,8 @@ Pi have a driver called gpio-keys which can be used to emit events when
 momentary push-buttons are pressed and released. This package conforms to the
 conventions of the gpio-keys driver and enables very efficient interfacing with
 momentary push-buttons. The technique may appear a little complex at first, but
-when used, it resuts in a pure JavaScript solution for momentary push-buttons.
+when used, it resuts in an efficient pure JavaScript solution for momentary
+push-buttons.
 
 ## Installation
 
@@ -17,7 +18,7 @@ when used, it resuts in a pure JavaScript solution for momentary push-buttons.
 Assume that there's a momentary push button connected to GPIO #4 on a
 Raspberry Pi:
 
-<img src="https://raw.githubusercontent.com/fivdi/gpio-button/master/example/button.png">
+<img src="https://raw.githubusercontent.com/fivdi/gpio-button/master/example/button4.png">
 
 Let's start with the complex bit, device tree overlays, after that
 everything is easy. A device tree overlay can be used to tell the Linux kernel
@@ -25,7 +26,7 @@ about hardware that is connected to the system, in this case, a momentary
 push-button. Once the Linux kernel knows about the device tree overlay, it
 arranges everything so that the momentary push-button can be used with ease.
 
-The device tree overlay for a piece of hardware is described in source code and
+The device tree overlay for a hardware device is described in source code and
 compiled into a binary format understood by the Linux kernel using the device
 tree compiler.
 
@@ -105,7 +106,7 @@ device_tree_overlay=overlays/button4-overlay.dtb
 After the Pi has been rebooted, the following JavaScript program can be used to
 print information when the momentary push-button is pressed or released:
 
-```
+```js
 var Button = require('gpio-button'),
   button4 = new Button('button4');
 

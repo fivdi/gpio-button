@@ -1,0 +1,33 @@
+{
+  "name": "gpio-button",
+  "version": "0.1.0",
+  "description": "Hardware momentary push-buttons the Linux way",
+  "main": "button.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Tests can only be run manually from the command line. They access hardware.\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fivdi/gpio-button.git"
+  },
+  "keywords": [
+    "button",
+    "gpio",
+    "beaglebone",
+    "raspberry",
+    "raspi",
+    "rpi",
+    "pi",
+    "linux"
+  ],
+  "author": "fivdi",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "~5.0.10"
+  }
+}
+

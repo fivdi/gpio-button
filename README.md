@@ -123,3 +123,36 @@ button4.on('release', function () {
 });
 ```
 
+## API
+
+**Button(name)**
+
+Returns a new Button object which inherits from EventEmitter. A 'ready' event
+will be emitted when the hardware button itself is ready for user interaction.
+The specified name is a string and and corresponds to the name of the node for
+the button in the device tree overlay.
+
+**pressed()**
+
+Returns true if the button is pressed, else false.
+
+**held()**
+
+Returns true if the button is held, else false.
+
+**released()**
+
+Returns true if the button is released, else false.
+
+**Event: press**
+
+Emitted when the button is pressed.
+
+**Event: hold**
+
+Emitted continuously when the button is held.
+
+**Event: release**
+
+Emitted when the button is released.
+

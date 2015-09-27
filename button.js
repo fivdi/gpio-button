@@ -17,6 +17,9 @@ function Button(name) {
     return new Button(name);
   }
 
+  this._pressed = false;
+  this._held = false;
+
   eventFilePattern = EVENT_FILE_PREFIX + name + EVENT_FILE_SUFFIX;
 
   glob(eventFilePattern, null, function (err, matches) {
@@ -39,13 +42,17 @@ function Button(name) {
 
       while (data.length >= EVENT_DATA_SIZE) {
         if (data[EVENT_TYPE_INDEX] === 0) {
+          this._pressed = false;
+          this._held = false;
           this.emit('release');
         } else if (data[EVENT_TYPE_INDEX] === 1) {
+          this._pressed = true;
           this.emit('press');
         } else if (data[EVENT_TYPE_INDEX] === 2) {
+          this._held = true;
           this.emit('hold');
         }   
-     
+
         data = data.slice(EVENT_DATA_SIZE);
       }
 
@@ -58,6 +65,18 @@ function Button(name) {
 }
 
 util.inherits(Button, events.EventEmitter);
+
+Button.prototype.pressed = function () {
+  return this._pressed;
+}
+
+Button.prototype.held = function () {
+  return this._held;
+}
+
+Button.prototype.released = function () {
+  return !this.pressed();
+}
 
 module.exports = Button;
 

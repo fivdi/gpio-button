@@ -104,7 +104,7 @@ device_tree_overlay=overlays/button4-overlay.dtb
 ```
 
 After the Pi has been rebooted, the following JavaScript program can be used to
-print information when the momentary push-button is pressed or released:
+print information when the momentary push-button is pressed, held, or released:
 
 ```js
 var Button = require('gpio-button'),
@@ -112,6 +112,10 @@ var Button = require('gpio-button'),
 
 button4.on('press', function () {
   console.log('press');
+});
+
+button4.on('hold', function () {
+  console.log('hold');
 });
 
 button4.on('release', function () {

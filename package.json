@@ -27,7 +27,7 @@
   "author": "fivdi",
   "license": "MIT",
   "dependencies": {
-    "glob": "~5.0.10"
+    "glob": "~5.0.14"
   }
 }
 

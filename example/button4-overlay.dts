@@ -25,6 +25,7 @@
                 pinctrl-names = "default";
                 pinctrl-0 = <&button4_pin>;
                 status = "okay";
+                autorepeat;
 
                 button@4 {
                     label = "button gpio4";

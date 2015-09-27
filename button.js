@@ -6,7 +6,9 @@ var events = require('events'),
   util = require('util');
 
 var EVENT_FILE_PREFIX = '/dev/input/by-path/platform-*',
-  EVENT_FILE_SUFFIX = '*-event';
+  EVENT_FILE_SUFFIX = '*-event',
+  EVENT_DATA_SIZE = 32,
+  EVENT_TYPE_INDEX = 12;
 
 function Button(name) {
   var eventFilePattern;
@@ -18,6 +20,8 @@ function Button(name) {
   eventFilePattern = EVENT_FILE_PREFIX + name + EVENT_FILE_SUFFIX;
 
   glob(eventFilePattern, null, function (err, matches) {
+    var data = new Buffer(0);
+
     if (err) {
       return this.emit('error', err);
     }
@@ -31,11 +35,20 @@ function Button(name) {
     }
 
     fs.createReadStream(matches[0]).on('data', function (buf) {
-      if (buf[12] === 1) {
-        this.emit('press');
-      } else if (buf[12] === 0) {
-        this.emit('release');
+      data = Buffer.concat([data, buf]);
+
+      while (data.length >= EVENT_DATA_SIZE) {
+        if (data[EVENT_TYPE_INDEX] === 0) {
+          this.emit('release');
+        } else if (data[EVENT_TYPE_INDEX] === 1) {
+          this.emit('press');
+        } else if (data[EVENT_TYPE_INDEX] === 2) {
+          this.emit('hold');
+        }   
+     
+        data = data.slice(EVENT_DATA_SIZE);
       }
+
     }.bind(this));
 
 // TODO: handle errors from stream

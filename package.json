@@ -1,6 +1,6 @@
 {
   "name": "gpio-button",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hardware momentary push-buttons the Linux way",
   "main": "button.js",
   "directories": {

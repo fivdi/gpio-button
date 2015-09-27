@@ -1,5 +1,5 @@
-Unpublished
-===========
+0.2.0 Sep 27 2015
+=================
 
   * support for autorepeat and a corresponding `hold` event
   * support querying button state

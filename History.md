@@ -1,5 +1,5 @@
-Unpublished
-===========
+1.0.0 Apr 09 2018
+=================
 
   * update dependencies (glob v7.1.2)
 

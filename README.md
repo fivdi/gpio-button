@@ -1,22 +1,24 @@
-## gpio-button
+# gpio-button
 
 A JavaScript package for interfacing with hardware momentary push-buttons
 connected to GPIO pins on Linux systems. Many Linux systems like the Raspberry
 Pi have a driver called gpio-keys which can be used to emit events when
 momentary push-buttons are pressed and released. This package conforms to the
-conventions of the gpio-keys driver and enables very efficient interfacing with
-momentary push-buttons. The technique may appear a little complex at first, but
-when used, it resuts in an efficient pure JavaScript solution for momentary
-push-buttons.
+conventions of the gpio-keys driver and enables very efficient interfacing
+with momentary push-buttons. The technique may appear a little complex at
+first, but when used, it results in an efficient pure JavaScript solution for
+momentary push-buttons.
 
 ## Installation
 
-    $ npm install gpio-button
+```
+npm install gpio-button
+```
 
 ## Usage
 
-Assume that there's a momentary push button connected to GPIO #4 on a
-Raspberry Pi:
+Assume that there's a momentary push button connected to GPIO4 on a Raspberry
+Pi:
 
 <img src="https://raw.githubusercontent.com/fivdi/gpio-button/master/example/button4.png">
 
@@ -30,7 +32,7 @@ The device tree overlay for a hardware device is described in source code and
 compiled into a binary format understood by the Linux kernel using the device
 tree compiler.
 
-The source code for the momentary push-button overlay connected to GPIO #4 in
+The source code for the momentary push-button overlay connected to GPIO4 in
 the circuit diagram above is:
 
 ```
@@ -76,7 +78,8 @@ the circuit diagram above is:
 Beautiful, isn't it :). The source code can also be found in
 `button4-overlay.dts` in the `example` directory.
 
-On Raspbian, the device tree compiler is installed with the following command:
+On Raspbian, if the device tree compiler is not already installed it can be
+isntalled with the following command:
 
 ```
 sudo apt-get install device-tree-compiler
@@ -87,6 +90,10 @@ And the overlay is compiled with the following command:
 ```
 dtc -@ -I dts -O dtb -o button4-overlay.dtb button4-overlay.dts
 ```
+
+The device tree compiler emits three warnings that can be safely ignored. For
+further information related to the warnings see
+[here](https://lb.raspberrypi.org/forums/viewtopic.php?f=107&t=161771&p1051588#p1051588).
 
 The device tree blob `button4-overlay.dtb` produced by the compiler is the
 binary format understood by the Linux kernel and should be copied to
@@ -103,8 +110,9 @@ The last piece of the puzzle is adding the following line at the end of
 device_tree_overlay=overlays/button4-overlay.dtb
 ```
 
-After the Pi has been rebooted, the following JavaScript program can be used to
-print information when the momentary push-button is pressed, held, or released:
+After the Pi has been rebooted, the following JavaScript program can be used
+to print information when the momentary push-button is pressed, held, or
+released:
 
 ```js
 var Button = require('gpio-button'),

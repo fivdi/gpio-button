@@ -1,3 +1,8 @@
+Unpublished
+===========
+
+  * update dependencies (glob v7.1.2)
+
 0.2.0 Sep 27 2015
 =================
 

@@ -17,7 +17,7 @@ setInterval(function () {
 
     console.log('pressed: ' + lastPressed + ', ' +
       'held: ' + lastHeld + ', ' +
-      'released: ' + lastReleased + ', '
+      'released: ' + lastReleased
     );
   }
 }, 1);
